@@ -1,0 +1,4 @@
+sai
+===
+
+Simple Arch Installer
