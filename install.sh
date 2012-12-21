@@ -86,6 +86,7 @@ fi
 
 umount /mnt/var/cache/pacman/pkg
 umount /mnt/boot
+umount /mnt/home
 umount /mnt
 vgremove -f arch
 cryptsetup luksClose $ROOT_DEVICE
@@ -126,20 +127,25 @@ if [ "x$USE_LVM" != "x" ]; then
   HOOKS="$HOOKS lvm2"
   LVM_DEVICE=$ROOT_DEVICE
   ROOT_DEVICE="/dev/mapper/arch-root"
+  HOME_DEVICE="/dev/mapper/arch-home"
 
   pvcreate $LVM_DEVICE
   vgcreate arch $LVM_DEVICE
-  lvcreate --name root --extents 100%FREE arch
+  lvcreate --name root --extents 40%FREE arch
+  lvcreate --name home --extents 100%FREE arch
 fi
 
 # -- Filesystems
 
 mkfs.ext2 $BOOT_DEVICE
 mkfs.$ROOTFS $ROOT_DEVICE
+mkfs.$ROOTFS $HOME_DEVICE
 
 # -- Mount
 
 mount $ROOT_DEVICE /mnt
+mkdir /mnt/home
+mount $HOME_DEVICE /mnt/home
 mkdir /mnt/boot
 mount $BOOT_DEVICE /mnt/boot
 
@@ -155,6 +161,7 @@ pacstrap /mnt base base-devel btrfs-progs grub-bios ifplugd sudo
 # -- /etc
 
 echo $ROOT_DEVICE / $ROOTFS $ROOTFS_OPTIONS 0 1 >> /mnt/etc/fstab
+echo $HOME_DEVICE /home $ROOTFS $ROOTFS_OPTIONS 0 2 >> /mnt/etc/fstab
 echo $BOOT_DEVICE /boot ext2 rw,relatime,noatime 0 2 >> /mnt/etc/fstab
 
 perl -pi -e 's/(issue_discards) = 0/$1 = 1/' /etc/lvm/lvm.conf
