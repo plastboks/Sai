@@ -190,7 +190,7 @@ cp /mnt/usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /mnt/boot/grub/locale/en.m
 
 if [ "x$USE_LUKS" != "x" ]; then
   perl -pi -e 's/^(GRUB_CMDLINE_LINUX|GRUB_DISABLE_LINUX_UUID)/#$1/' /mnt/etc/default/grub
-  echo GRUB_CMDLINE_LINUX=\"cryptdevice=$LUKS_DEVICE:crypt:allow-discards\" >> /mnt/etc/default/grub
+  echo GRUB_CMDLINE_LINUX=\"cryptdevice=$LUKS_PART:crypt:allow-discards\" >> /mnt/etc/default/grub
   echo GRUB_DISABLE_LINUX_UUID=true >> /mnt/etc/default/grub
 fi
 
