@@ -40,7 +40,8 @@ sudo pacman -S \
 sudo pacman -S \
   openssh \
   rsync \
-  keychain
+  keychain \
+  ecryptfs-utils
 
 # mail
 sudo pacman -S mutt
