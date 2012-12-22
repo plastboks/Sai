@@ -10,9 +10,10 @@ sudo pacman -S \
   xorg-xinit \
   xorg-xrdb \
   xorg-xrandr \
-  xf86-video-intel \
+  xf86-video-nouveau \
   xautolock \
   xorg-utils \
+  xorg-apps \
   i3 \
   rxvt-unicode \
   dmenu \
@@ -70,4 +71,6 @@ sudo pacman -S \
   openssl \
   zlib \
   wget \
-  git
+  git \
+  vim \
+  nfs-utils

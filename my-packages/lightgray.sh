@@ -13,6 +13,7 @@ sudo pacman -S \
   xf86-video-nouveau \
   xautolock \
   xorg-utils \
+  xorg-apps \
   i3 \
   rxvt-unicode \
   dmenu \
@@ -70,4 +71,6 @@ sudo pacman -S \
   openssl \
   zlib \
   wget \
-  git
+  git \
+  vim \
+  nfs-utils
