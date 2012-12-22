@@ -120,8 +120,8 @@ fi
 # -- LVM
 
 HOOKS="$HOOKS lvm2"
-ROOT_DEVICE="/dev/mapper/arch-root"
-HOME_DEVICE="/dev/mapper/arch-home"
+ROOT_PART="/dev/mapper/arch-root"
+HOME_PART="/dev/mapper/arch-home"
 
 pvcreate $LVM_PART
 vgcreate arch $LVM_PART
