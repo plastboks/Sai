@@ -125,7 +125,7 @@ HOME_PART="/dev/mapper/arch-home"
 
 pvcreate $LVM_PART
 vgcreate arch $LVM_PART
-lvcreate --name root --extents 40%FREE arch
+lvcreate --name root --extents 20%FREE arch
 lvcreate --name home --extents 100%FREE arch
 
 # -- Filesystems
