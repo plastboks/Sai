@@ -17,12 +17,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-ROOTFS="ext4"
-ROOTFS_OPTIONS="rw,relatime,noatime,data=ordered"
-ROOTFS_SSD_OPTIONS="discard"
+FS="ext4"
+FS_OPTIONS="rw,relatime,noatime,data=ordered"
+FS_SSD_OPTIONS="discard"
 HOSTNAME="arch"
-BOOT_DEVICE="/dev/disk/by-partlabel/boot"
-ROOT_DEVICE="/dev/disk/by-partlabel/root"
+BOOT_PART="/dev/disk/by-partlabel/boot"
+LVM_PART="/dev/disk/by-partlabel/lvm"
 HOOKS=""
 
 while test $# -gt 0; do
@@ -31,15 +31,12 @@ while test $# -gt 0; do
 
   case "$OPTION" in
     --btrfs)
-      ROOTFS="btrfs"
-      ROOTFS_OPTIONS="defaults,noatime"
-      ROOTFS_SSD_OPTIONS="discard,ssd"
+      FS="btrfs"
+      FS_OPTIONS="defaults,noatime"
+      FS_SSD_OPTIONS="discard,ssd"
       ;;
     --luks)
       USE_LUKS=1
-      ;;
-    --lvm)
-      USE_LVM=1
       ;;
     --hostname=*)
       HOSTNAME=`echo "$OPTION" | sed 's/--hostname=//'`
@@ -70,7 +67,6 @@ My Little Arch Linux Installer
   --btrfs                  Use BTRFS as root filesystem (Default ext4)
   --hostname=<hostname>    Set the target hostname (Default "arch")
   --luks                   Enable LUKS encryption (Default off)
-  --lvm                    Enable LVM (Default off)
   --nfs=<remote>           Mount an NFS directory as pacman package cache
   --ssd                    Optimize for SSD devices
 
@@ -79,7 +75,7 @@ EOF
 fi
 
 if [ "x$USE_SSD" != "x" ]; then
-  ROOTFS_OPTIONS="$ROOTFS_OPTIONS,$ROOTFS_SSD_OPTIONS"
+  FS_OPTIONS="$FS_OPTIONS,$FS_SSD_OPTIONS"
 fi
 
 # -- Unmount any previous attempt
@@ -89,7 +85,7 @@ umount /mnt/boot
 umount /mnt/home
 umount /mnt
 vgremove -f arch
-cryptsetup luksClose $ROOT_DEVICE
+cryptsetup luksClose $LVM_PART
 
 # -- Partitioning
 
@@ -97,7 +93,7 @@ sgdisk \
   -o \
   -n 1:0:+32M -t 1:ef02 -c 1:bios \
   -n 2:0:+512M -c 2:boot \
-  -N=3 -c 3:root \
+  -N=3 -c 3:lvm \
   -p $DEVICE
 
 sleep 2 # Needed to make partitions visible
@@ -106,8 +102,8 @@ sleep 2 # Needed to make partitions visible
 
 if [ "x$USE_LUKS" != "x" ]; then
   HOOKS="$HOOKS encrypt"
-  LUKS_DEVICE=$ROOT_DEVICE
-  ROOT_DEVICE="/dev/mapper/crypt"
+  LUKS_PART=$LVM_PART
+  LVM_PART="/dev/mapper/crypt"
 
   cryptsetup \
     --cipher aes-xts-plain64 \
@@ -115,39 +111,36 @@ if [ "x$USE_LUKS" != "x" ]; then
     --hash sha512 \
     --iter-time 5000 \
     --verify-passphrase \
-    luksFormat $LUKS_DEVICE
+    luksFormat $LUKS_PART
 
   cryptsetup \
-    luksOpen $LUKS_DEVICE crypt
+    luksOpen $LUKS_PART crypt
 fi
 
 # -- LVM
 
-if [ "x$USE_LVM" != "x" ]; then
-  HOOKS="$HOOKS lvm2"
-  LVM_DEVICE=$ROOT_DEVICE
-  ROOT_DEVICE="/dev/mapper/arch-root"
-  HOME_DEVICE="/dev/mapper/arch-home"
+HOOKS="$HOOKS lvm2"
+ROOT_DEVICE="/dev/mapper/arch-root"
+HOME_DEVICE="/dev/mapper/arch-home"
 
-  pvcreate $LVM_DEVICE
-  vgcreate arch $LVM_DEVICE
-  lvcreate --name root --extents 40%FREE arch
-  lvcreate --name home --extents 100%FREE arch
-fi
+pvcreate $LVM_PART
+vgcreate arch $LVM_PART
+lvcreate --name root --extents 40%FREE arch
+lvcreate --name home --extents 100%FREE arch
 
 # -- Filesystems
 
-mkfs.ext2 $BOOT_DEVICE
-mkfs.$ROOTFS $ROOT_DEVICE
-mkfs.$ROOTFS $HOME_DEVICE
+mkfs.ext2 $BOOT_PART
+mkfs.$FS $ROOT_PART
+mkfs.$FS $HOME_PART
 
 # -- Mount
 
-mount $ROOT_DEVICE /mnt
+mount $ROOT_PART /mnt
 mkdir /mnt/home
-mount $HOME_DEVICE /mnt/home
+mount $HOME_PART /mnt/home
 mkdir /mnt/boot
-mount $BOOT_DEVICE /mnt/boot
+mount $BOOT_PART /mnt/boot
 
 if [ "x$NFS_CACHE" != "x" ]; then
   mkdir -p /mnt/var/cache/pacman/pkg
@@ -160,9 +153,9 @@ pacstrap /mnt base base-devel btrfs-progs grub-bios ifplugd sudo
 
 # -- /etc
 
-echo $ROOT_DEVICE / $ROOTFS $ROOTFS_OPTIONS 0 1 >> /mnt/etc/fstab
-echo $HOME_DEVICE /home $ROOTFS $ROOTFS_OPTIONS 0 2 >> /mnt/etc/fstab
-echo $BOOT_DEVICE /boot ext2 rw,relatime,noatime 0 2 >> /mnt/etc/fstab
+echo $ROOT_PART / $FS $FS_OPTIONS 0 1 >> /mnt/etc/fstab
+echo $HOME_PART /home $FS $FS_OPTIONS 0 2 >> /mnt/etc/fstab
+echo $BOOT_PART /boot ext2 rw,relatime,noatime 0 2 >> /mnt/etc/fstab
 
 perl -pi -e 's/(issue_discards) = 0/$1 = 1/' /etc/lvm/lvm.conf
 
