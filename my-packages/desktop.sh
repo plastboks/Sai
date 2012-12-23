@@ -1,5 +1,4 @@
-# THIS FILE IS ONLY FOR REFERANCE!!!
-
+# THIS FILE IS ONLY FOR REFERANCE!!!  
 # update
 sudo pacman -Syu
 
@@ -39,6 +38,7 @@ sudo pacman -S \
 # ssh and rsync
 sudo pacman -S \
   openssh \
+  sshfs \
   rsync \
   keychain \
   ecryptfs-utils
