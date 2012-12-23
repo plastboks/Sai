@@ -31,6 +31,10 @@ sudo pacman -S \
   alsa-utils \
   moc
 
+# video
+sudo pacman -S \
+  mplayer
+
 # sensors
 sudo pacman -S \ 
   lm_sensors
