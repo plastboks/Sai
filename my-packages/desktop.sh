@@ -74,4 +74,5 @@ sudo pacman -S \
   wget \
   git \
   vim \
-  nfs-utils
+  nfs-utils \
+  htop
