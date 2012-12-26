@@ -71,6 +71,7 @@ sudo pacman -S luakit
 #  librsvg \
 #  libsvg \
 #  imagemagick \
+#  ghostscript \
 #  evince \
 #  libreoffice
 
