@@ -64,6 +64,10 @@ sudo pacman -S luakit
 #  tangerine-icon-theme \
 #  gnome-menus \
 #  gvfs \
+#  gvfs-smb \
+#  gvfs-afp \
+#  gvfs-obexftp \
+#  gtk3 \
 #  evince \
 #  libreoffice
 
