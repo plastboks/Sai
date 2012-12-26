@@ -63,6 +63,7 @@ sudo pacman -S luakit
 #  gamin \
 #  tangerine-icon-theme \
 #  gnome-menus \
+#  gvfs \
 #  evince \
 #  libreoffice
 
