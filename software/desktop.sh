@@ -68,6 +68,8 @@ sudo pacman -S luakit
 #  gvfs-afp \
 #  gvfs-obexftp \
 #  gtk3 \
+#  librsvg \
+#  libsvg \
 #  evince \
 #  libreoffice
 
