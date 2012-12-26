@@ -60,6 +60,9 @@ sudo pacman -S luakit
 # file browsers and other tools
 #sudo pacman -S \
 #  pcmanfm \
+#  gamin \
+#  tangerine-icon-theme \
+#  gnome-menus \
 #  evince \
 #  libreoffice
 
