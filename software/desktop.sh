@@ -70,6 +70,7 @@ sudo pacman -S luakit
 #  gtk3 \
 #  librsvg \
 #  libsvg \
+#  imagemagick \
 #  evince \
 #  libreoffice
 
