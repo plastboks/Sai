@@ -57,7 +57,6 @@ sudo pacman -S finch
 sudo pacman -S \
   luakit \
 #  dwb \
-#  uzbl-tabbed 
 
 # file browsers and other tools
 #sudo pacman -S \
