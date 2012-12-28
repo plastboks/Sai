@@ -54,8 +54,10 @@ sudo pacman -S mutt
 sudo pacman -S finch
 
 # web 
-sudo pacman -S luakit
-
+sudo pacman -S \
+  luakit \
+#  dwb \
+#  uzbl-tabbed 
 
 # file browsers and other tools
 #sudo pacman -S \
