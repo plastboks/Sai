@@ -16,8 +16,6 @@ sudo pacman -S \
   i3 \
   rxvt-unicode \
   dmenu \
-  pcsc-tools \
-  ccid \
   
 
 # fonts
@@ -45,7 +43,8 @@ sudo pacman -S \
   sshfs \
   rsync \
   keychain \
-  ecryptfs-utils
+  ecryptfs-utils \
+  encfs
 
 # mail
 sudo pacman -S mutt
@@ -57,6 +56,12 @@ sudo pacman -S finch
 sudo pacman -S \
   luakit \
 #  dwb \
+
+# smartcard 
+sudo pacman -S \
+  pcsc-tools \
+  ccid 
+
 
 # file browsers and other tools
 #sudo pacman -S \
@@ -92,4 +97,5 @@ sudo pacman -S \
   git \
   vim \
   nfs-utils \
-  htop
+  htop \
+  tmux \
