@@ -41,6 +41,7 @@ sudo pacman -S \
 sudo pacman -S \
   openssh \
   sshfs \
+  unison \
   rsync \
   keychain \
   ecryptfs-utils \
