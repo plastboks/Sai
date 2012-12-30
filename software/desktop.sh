@@ -86,6 +86,7 @@ sudo pacman -S \
 # other
 sudo pacman -S \
   cclive \
+  quvi \
   openssl \
   zlib \
   wget \
