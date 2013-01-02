@@ -75,6 +75,16 @@ read -p "Install various network tools ?" -n 1 -r
 if [[ $REPLY =~[Yy]$ ]]; then
   sudo pacman -S \ 
     ntp
+  CRONDATE="/etc/cron.hourly/ntpdate"
+  if [[ -f $CRONDATE ]]; then
+    echo "${CRONDATE} already exists"
+  else
+    echo "Making ${CRONDATE} and population it with data."
+    sudo touch $CRONDATE
+    sudo chmod +x $CRONDATE
+    echo "#!/bin/sh" > $CRONDATE
+    echo "/usr/bin/ntpdate pool.ntp.org" >> $CRONDATE
+  fi
 fi
 
 
