@@ -130,6 +130,16 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     zlib 
 fi
 
+# enable ssh server 
+printf "\n"
+read -p "Enable ssh server and start it [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo systemctl enable sshd.service
+  sudo systemctl start sshd.service
+fi
+
+
 
 # mail, chat, rss
 printf "\n"
