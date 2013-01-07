@@ -355,6 +355,16 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# gigolo from AUR
+printf "\n"
+read -p "Install gigolo from AUR [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo yaourt -S \ 
+    gigolo
+fi
+
+
 # thunar file browser
 printf "\n"
 read -p "Install thunar filebrowser and extra tools [y/N]" -n 1 -r
