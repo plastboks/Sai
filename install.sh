@@ -149,7 +149,7 @@ fi
 
 # -- Initialize base system
 
-pacstrap /mnt base base-devel btrfs-progs grub-bios ifplugd sudo
+pacstrap /mnt base base-devel btrfs-progs grub-bios networkmanager sudo
 
 # -- /etc
 
@@ -168,8 +168,7 @@ hwclock --systohc --utc
 
 echo $HOSTNAME > /mnt/etc/hostname
 
-ln -s examples/ethernet-dhcp /mnt/etc/network.d
-arch-chroot /mnt systemctl enable net-auto-wired.service
+arch-chroot /mnt systemctl enable NetworkManager.service
 
 # -- Initramfs
 

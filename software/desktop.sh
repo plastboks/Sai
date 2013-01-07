@@ -20,6 +20,16 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# wifi 
+printf "\n"
+read -p "Install wireless tools and wicd [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    wireless_tools \
+fi
+
+
 # xserver and some other
 printf "\n"
 read -p "Install xorg [y/N]" -n 1 -r
