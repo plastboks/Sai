@@ -11,7 +11,7 @@ fi
 
 # xserver and some other
 printf "\n"
-read -p "Install xorg and i3 [y/N]" -n 1 -r
+read -p "Install xorg [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
@@ -19,13 +19,61 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     xorg-xinit \
     xorg-xrdb \
     xorg-xrandr \
-    xf86-video-nouveau \
     xautolock \
     xorg-utils \
     xorg-apps \
+fi
+
+
+# intel graphics driver
+printf "\n"
+read -r "Install intel graphics driver [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    xf86-video-intel
+fi
+
+
+# nvidia open source graphics driver
+printf "\n"
+read -r "Install nvidia open source graphics driver [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    xf86-video-nouveau
+fi
+
+
+# arandr monitor utiliy
+printf "\n"
+read -r "Install arandr graphics utility [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    arandr
+fi
+
+
+# slimDM login screen
+printf "\n"
+read -r "Install slim graphical login manager [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    slim
+fi
+
+
+# i3 window manager and dmenu
+printf "\n"
+read -p "Install i3 window manager and dmenu [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
     i3 \
-    rxvt-unicode \
-    dmenu 
+    dmenu
+    rxvt-unicode
 fi
 
 
