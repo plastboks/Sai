@@ -26,7 +26,30 @@ read -p "Install wireless tools and wicd [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
-    wireless_tools \
+    iw \
+    wireless_tools 
+fi
+
+
+# network manager graphical tool
+printf "\n"
+read -p "Install grapical network manager tool [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    network-manager-applet
+fi
+
+
+# network manager vpn addons
+printf "\n"
+read -p "Install network manager applet VPN addons [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    networkmanager-openconnect \
+    networkmanager-openvpn \
+    networkmanager-pptp 
 fi
 
 
