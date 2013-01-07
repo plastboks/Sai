@@ -62,6 +62,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     slim
+  sudo systemctl enable slim.service
 fi
 
 
@@ -284,6 +285,17 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     pcsc-tools \
     ccid 
 fi
+
+
+# disk utilities
+printf "\n"
+read -p "Install gptfdisk (cgdisk) [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  print "\n"
+  sudo pacman -S \
+    gptfdisk
+fi
+
 
 
 # file browsers and other tools
