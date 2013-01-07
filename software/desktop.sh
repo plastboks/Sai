@@ -131,6 +131,50 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# NFS server
+printf "\n"
+read -p "Install nfs client and server [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  print "\n"
+  sudo pacman -S \
+    nts-utils
+fi
+
+
+# activate NFS serivce
+printf "\n"
+read -p "Activate NFS server service" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  print "\n"
+  sudo systemctl enable rpc-idmapd.service
+  sudo systemctl enable rpc-mountd.service
+  sudo systemctl start rpc-idmapd.service
+  sudo systemctl start rpc-mountd.service
+fi
+
+
+# Nginx, php-fpm
+printf "\n"
+read -p "Install nginx and php-fpm [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    nginx \
+    php-fpm
+fi
+
+# NFS server
+printf "\n"
+read -p "Activate and start Nginx and php-fpm [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  print "\n"
+  sudo systemctl enable nginx.service
+  sudo systemctl enable php-fpm.service
+  sudo systemctl start nginx.service
+  sudo systemctl start php-fpm.service
+fi
+
+
 # network time tools
 printf "\n"
 read -p "Install various networktime tools [y/N]" -n 1 -r
