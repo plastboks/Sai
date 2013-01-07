@@ -9,6 +9,17 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# setup aur
+printf "\n"
+read -p "Setup AUR and Yaurt [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+ sudo echo '[archlinuxfr]' >> /etc/pacman.conf
+ sudo echo 'Server = http://repo.archlinux.fr/$arch'
+ sudo pacman -Sy \
+  yaourt
+fi
+
+
 # xserver and some other
 printf "\n"
 read -p "Install xorg [y/N]" -n 1 -r
@@ -164,7 +175,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     php-fpm
 fi
 
-# NFS server
+# Activate nginx and php-fpm
 printf "\n"
 read -p "Activate and start Nginx and php-fpm [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -193,6 +204,28 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "#!/bin/sh" > $CRONDATE
     printf "/usr/bin/ntpdate pool.ntp.org" >> $CRONDATE
   fi
+fi
+
+
+# bluetooth utilities
+printf "\n"
+read -p "Install bluetooth tools [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    bluez \
+    blueman
+
+fi
+
+
+# enable and activate bluetooth daemon
+printf "\n"
+read -p "Activate and enable bluetooth daemon [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo systemctl enable bluetooth.service
+  sudo systemctl start bluetooht.service
 fi
 
 
@@ -305,6 +338,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     pcmanfm \
+    gksu \
     gamin \
     tangerine-icon-theme \
     gnome-menus \
@@ -318,6 +352,19 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     imagemagick \
     ghostscript \
     evince 
+fi
+
+
+# thunar file browser
+printf "\n"
+read -p "Install thunar filebrowser and extra tools [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  sudo pacman -S \
+    thunar \
+    thunar-volume \
+    thunar-archive-plugin \
+    thunar-media-tags-plugin \
+    file-roller
 fi
 
 
@@ -340,6 +387,21 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     dunst \
     inotify-tools
 fi
+
+
+# archive tools
+printf "\n"
+read -p "Install archive tools [y/N]" -n 1 -r 
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    unrar \
+    zip \
+    p7zip \
+    arj \
+    unace
+fi
+
 
 # other
 printf "\n"
