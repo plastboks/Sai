@@ -302,13 +302,22 @@ fi
 
 # mail, chat, rss
 printf "\n"
-read -p "Install mail, chat and rss utils [y/N]" -n 1 -r
+read -p "Install mail, and rss utils [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     mutt \
-    finch \
     newsbeuter
+fi
+
+# IRC and Jabber
+printf "\n"
+read -p "Install irc and jabber tools [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    irssi \
+    bitlbee
 fi
 
 
