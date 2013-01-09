@@ -456,7 +456,8 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     quvi \
     git \
     htop \
-    tmux 
+    tmux \
+    links 
 fi
 
 printf "\n"
