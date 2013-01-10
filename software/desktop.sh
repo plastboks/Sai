@@ -467,6 +467,8 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     htop \
     tmux \
     links 
+    socat
+    findutils
 fi
 
 printf "\n"
