@@ -321,6 +321,16 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# Bitlbee daemon
+printf "\n"
+read -p "Enable and start Bitlbee daemon [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  print "\n"
+  sudo systemctl enable bitlbee.service
+  sudo systemctl start bitlbee.service
+fi
+
+
 # web 
 printf "\n"
 read -p "Install webbrowsers [y/N]" -n 1 -r
@@ -342,6 +352,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     icedtea-web
 fi
 
+
 # flash browser plugin
 printf "\n"
 read -p "Install flash browser plugin [y/N]" -n 1 -r
@@ -351,6 +362,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     flashplugin
 fi
 
+
 # smartcard 
 printf "\n"
 read -p "Install smartcard utils [y/N]" -n 1 -r
@@ -359,6 +371,16 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo pacman -S \
     pcsc-tools \
     ccid 
+fi
+
+
+# enable smartcard daemon
+printf "\n"
+read -p "Enable and start smardcard daemon [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo systemctl enable pcscd.service
+  sudo systemctl start pcscd.service
 fi
 
 
