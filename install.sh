@@ -173,7 +173,7 @@ arch-chroot /mnt systemctl enable NetworkManager.service
 # -- Initramfs
 
 perl -pi -e 's/^(HOOKS)/#$1/' /mnt/etc/mkinitcpio.conf
-echo HOOKS=\"base udev autodetect modconf usbinput block$HOOKS filesystems usbinput fsck\" >> /mnt/etc/mkinitcpio.conf
+echo HOOKS=\"base udev autodetect modconf usbinput block$HOOKS filesystems fsck\" >> /mnt/etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -p linux
 
 # -- User setup
