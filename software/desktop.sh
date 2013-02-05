@@ -397,7 +397,7 @@ fi
 
 # file browsers and other tools
 printf "\n"
-read -p "Install graphical file browsers and other various tools [y/N]" -n 1 -r
+read -p "Install graphical file browsers and other various graphics tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
@@ -415,7 +415,8 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     libpng \
     imagemagick \
     ghostscript \
-    evince 
+    evince \
+    sxiv
 fi
 
 
