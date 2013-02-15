@@ -49,7 +49,27 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo pacman -S \
     networkmanager-openconnect \
     networkmanager-openvpn \
-    networkmanager-pptp 
+    networkmanager-pptp
+fi
+
+
+# dnsmasq
+printf "\n"
+read -p "Install dnsmasq dhcp/dns server [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    dnsmasq
+fi
+
+
+#dnsmasq enable and activate
+printf "\n"
+read -p "Enable and activate dnsmas server [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo systemctl enable dnsmasq.service
+  sudo systemctl activate dnsmasq.service
 fi
 
 
@@ -65,13 +85,13 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     xorg-xrandr \
     xautolock \
     xorg-utils \
-    xorg-apps \
+    xorg-apps 
 fi
 
 
 # intel graphics driver
 printf "\n"
-read -r "Install intel graphics driver [y/N]" -n 1 -r
+read -p "Install intel graphics driver [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
@@ -81,7 +101,7 @@ fi
 
 # nvidia open source graphics driver
 printf "\n"
-read -r "Install nvidia open source graphics driver [y/N]" -n 1 -r
+read -p "Install nvidia open source graphics driver [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
@@ -91,7 +111,7 @@ fi
 
 # arandr monitor utiliy
 printf "\n"
-read -r "Install arandr graphics utility [y/N]" -n 1 -r
+read -p "Install arandr graphics utility [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
@@ -101,7 +121,7 @@ fi
 
 # slimDM login screen
 printf "\n"
-read -r "Install slim graphical login manager [y/N]" -n 1 -r
+read -p "Install slim graphical login manager [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
