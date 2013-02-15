@@ -1,4 +1,10 @@
-# THIS FILE IS ONLY FOR REFERANCE!!!
+#!/bin/bash
+#
+# This is an ugly and simple shortcut for installing various software
+# 
+# The script should be considered as a reference only.
+# 
+
 
 
 # update
