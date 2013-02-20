@@ -75,7 +75,7 @@ read -p "Enable and activate dnsmas server [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo systemctl enable dnsmasq.service
-  sudo systemctl activate dnsmasq.service
+  sudo systemctl start dnsmasq.service
 fi
 
 
