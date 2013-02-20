@@ -187,7 +187,8 @@ read -p "Install editors [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
-    vim
+    vim \
+    ctags
 fi
 
 
