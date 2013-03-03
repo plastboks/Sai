@@ -505,6 +505,20 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# avr programming
+printf "\n"
+read -p "Install avr-gcc avrdude etc [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    avr-gcc \
+    avr-binutils \
+    avr-gdb \
+    avr-libc \
+    simavr \
+    avrdude
+fi
+
 # other
 printf "\n"
 read -p "Install other various cli tools [y/N]" -n 1 -r
