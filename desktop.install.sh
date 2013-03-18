@@ -254,16 +254,19 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \ 
     ntp
-  CRONDATE="/etc/cron.hourly/ntpdate"
-  if [[ -f $CRONDATE ]]; then
-    printf "${CRONDATE} already exists"
-  else
-    printf "Making ${CRONDATE} and population it with data."
-    sudo touch $CRONDATE
-    sudo chmod +x $CRONDATE
-    printf "#!/bin/sh" > $CRONDATE
-    printf "/usr/bin/ntpdate pool.ntp.org" >> $CRONDATE
-  fi
+fi
+
+
+# enable ntpd
+printf "\n"
+read -p "Enable ntpd [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  read -p "Enter timezone (ex Europe/Oslo): " -r
+  sudo timedatectl set-timezone $REPLY
+  sudo systemctl enable ntpd
+  sudo systemctl start ntpd
+  sudo timedatectl set-ntp 1
 fi
 
 
@@ -316,6 +319,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     zlib 
 fi
 
+
 # enable ssh server 
 printf "\n"
 read -p "Enable ssh server and start it [y/N]" -n 1 -r
@@ -324,7 +328,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo systemctl enable sshd.service
   sudo systemctl start sshd.service
 fi
-
 
 
 # mail, chat, rss
@@ -336,6 +339,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     mutt \
     newsbeuter
 fi
+
 
 # IRC and Jabber
 printf "\n"
