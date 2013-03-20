@@ -534,9 +534,10 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     git \
     htop \
     tmux \
-    links 
-    socat
-    findutils
+    links \
+    socat \
+    findutils \
+    enscript
 fi
 
 printf "\n"
