@@ -125,13 +125,21 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
-# slimDM login screen
+# slim login screen
 printf "\n"
 read -p "Install slim graphical login manager [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     slim
+fi
+
+
+# enable slimDM login screen
+printf "\n"
+read -p "Enable slim graphical login manager [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
   sudo systemctl enable slim.service
 fi
 
@@ -234,6 +242,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     nginx \
     php-fpm
 fi
+
 
 # Activate nginx and php-fpm
 printf "\n"
@@ -523,6 +532,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     avrdude
 fi
 
+
 # other
 printf "\n"
 read -p "Install other various cli tools [y/N]" -n 1 -r
@@ -539,5 +549,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     findutils \
     enscript
 fi
+
 
 printf "\n"
