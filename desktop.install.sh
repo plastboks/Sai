@@ -493,6 +493,39 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+#printing
+printf "\n"
+read -p "Install CUPS printing software [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    cups \
+    cups-filters \ 
+    ghostscript \
+    gsfonts
+fi
+
+
+# hp printer driver
+printf "\n"
+read -p "Install HP printer drivers [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo pacman -S \
+    hplip
+fi
+
+
+# enable and start cups 
+printf "\n"
+read -p "Enable and start CUPS [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
+  sudo systemctl enable cups.service
+  sudo systemctl start cups.service
+fi
+
+
 # notification
 printf "\n"
 read -p "Install notification tools [y/N]" -n 1 -r
