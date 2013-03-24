@@ -215,7 +215,7 @@ fi
 printf "\n"
 read -p "Install nfs client and server [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-  print "\n"
+  printf "\n"
   sudo pacman -S \
     nts-utils
 fi
@@ -225,7 +225,7 @@ fi
 printf "\n"
 read -p "Activate NFS server service" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-  print "\n"
+  printf "\n"
   sudo systemctl enable rpc-idmapd.service
   sudo systemctl enable rpc-mountd.service
   sudo systemctl start rpc-idmapd.service
@@ -248,7 +248,7 @@ fi
 printf "\n"
 read -p "Activate and start Nginx and php-fpm [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-  print "\n"
+  printf "\n"
   sudo systemctl enable nginx.service
   sudo systemctl enable php-fpm.service
   sudo systemctl start nginx.service
@@ -428,7 +428,7 @@ fi
 printf "\n"
 read -p "Install gptfdisk (cgdisk) [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-  print "\n"
+  printf "\n"
   sudo pacman -S \
     gptfdisk
 fi
@@ -474,6 +474,7 @@ fi
 printf "\n"
 read -p "Install thunar filebrowser and extra tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
+  printf "\n"
   sudo pacman -S \
     thunar \
     thunar-volume \
