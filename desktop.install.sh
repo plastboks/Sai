@@ -66,16 +66,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     dnsmasq
-fi
 
-
-#dnsmasq enable and activate
-printf "\n"
-read -p "Enable and activate dnsmas server [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  #dnsmasq enable and activate
   printf "\n"
-  sudo systemctl enable dnsmasq.service
-  sudo systemctl start dnsmasq.service
+  read -p "Enable and start dnsmas server [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable dnsmasq.service
+    sudo systemctl start dnsmasq.service
+  fi
 fi
 
 
@@ -132,15 +131,14 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     slim
-fi
 
-
-# enable slimDM login screen
-printf "\n"
-read -p "Enable slim graphical login manager [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # enable slimDM login screen
   printf "\n"
-  sudo systemctl enable slim.service
+  read -p "Enable slim graphical login manager [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable slim.service
+  fi
 fi
 
 
@@ -218,18 +216,17 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
     nts-utils
-fi
 
-
-# activate NFS serivce
-printf "\n"
-read -p "Activate NFS server service" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # activate NFS serivce
   printf "\n"
-  sudo systemctl enable rpc-idmapd.service
-  sudo systemctl enable rpc-mountd.service
-  sudo systemctl start rpc-idmapd.service
-  sudo systemctl start rpc-mountd.service
+  read -p "Enable and start NFS server service" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable rpc-idmapd.service
+    sudo systemctl enable rpc-mountd.service
+    sudo systemctl start rpc-idmapd.service
+    sudo systemctl start rpc-mountd.service
+  fi
 fi
 
 
@@ -241,18 +238,17 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo pacman -S \
     nginx \
     php-fpm
-fi
 
-
-# Activate nginx and php-fpm
-printf "\n"
-read -p "Activate and start Nginx and php-fpm [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # Activate nginx and php-fpm
   printf "\n"
-  sudo systemctl enable nginx.service
-  sudo systemctl enable php-fpm.service
-  sudo systemctl start nginx.service
-  sudo systemctl start php-fpm.service
+  read -p "Enable and start Nginx and php-fpm [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable nginx.service
+    sudo systemctl enable php-fpm.service
+    sudo systemctl start nginx.service
+    sudo systemctl start php-fpm.service
+  fi
 fi
 
 
@@ -263,19 +259,18 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \ 
     ntp
-fi
 
-
-# enable ntpd
-printf "\n"
-read -p "Enable ntpd [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # enable ntpd
   printf "\n"
-  read -p "Enter timezone (ex Europe/Oslo): " -r
-  sudo timedatectl set-timezone $REPLY
-  sudo systemctl enable ntpd
-  sudo systemctl start ntpd
-  sudo timedatectl set-ntp 1
+  read -p "Enable and start ntpd [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    read -p "Enter timezone (ex Europe/Oslo): " -r
+    sudo timedatectl set-timezone $REPLY
+    sudo systemctl enable ntpd
+    sudo systemctl start ntpd
+    sudo timedatectl set-ntp 1
+  fi
 fi
 
 
@@ -288,16 +283,14 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     bluez \
     blueman
 
-fi
-
-
-# enable and activate bluetooth daemon
-printf "\n"
-read -p "Activate and enable bluetooth daemon [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # enable and activate bluetooth daemon
   printf "\n"
-  sudo systemctl enable bluetooth.service
-  sudo systemctl start bluetooht.service
+  read -p "Enable and start bluetooth daemon [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable bluetooth.service
+    sudo systemctl start bluetooht.service
+  fi
 fi
 
 
@@ -326,16 +319,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     encfs \
     openssl \
     zlib 
-fi
 
-
-# enable ssh server 
-printf "\n"
-read -p "Enable ssh server and start it [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # enable ssh server 
   printf "\n"
-  sudo systemctl enable sshd.service
-  sudo systemctl start sshd.service
+  read -p "Enable and start ssh server and start it [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable sshd.service
+    sudo systemctl start sshd.service
+  fi
 fi
 
 
@@ -358,16 +350,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo pacman -S \
     irssi \
     bitlbee
-fi
 
-
-# Bitlbee daemon
-printf "\n"
-read -p "Enable and start Bitlbee daemon [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-  print "\n"
-  sudo systemctl enable bitlbee.service
-  sudo systemctl start bitlbee.service
+  # Bitlbee daemon
+  printf "\n"
+  read -p "Enable and start Bitlbee daemon [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    print "\n"
+    sudo systemctl enable bitlbee.service
+    sudo systemctl start bitlbee.service
+  fi
 fi
 
 
@@ -411,16 +402,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo pacman -S \
     pcsc-tools \
     ccid 
-fi
 
-
-# enable smartcard daemon
-printf "\n"
-read -p "Enable and start smardcard daemon [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
+  # enable smartcard daemon
   printf "\n"
-  sudo systemctl enable pcscd.service
-  sudo systemctl start pcscd.service
+  read -p "Enable and start smardcard daemon [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable pcscd.service
+    sudo systemctl start pcscd.service
+  fi
 fi
 
 
@@ -432,7 +422,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   sudo pacman -S \
     gptfdisk
 fi
-
 
 
 # file browsers and other tools
@@ -504,6 +493,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     cups-filters \ 
     ghostscript \
     gsfonts
+
+  # enable and start cups 
+  printf "\n"
+  read -p "Enable and start CUPS [y/N]" -n 1 -r
+  if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo systemctl enable cups.service
+    sudo systemctl start cups.service
+  fi
 fi
 
 
@@ -517,14 +515,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
-# enable and start cups 
-printf "\n"
-read -p "Enable and start CUPS [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-  printf "\n"
-  sudo systemctl enable cups.service
-  sudo systemctl start cups.service
-fi
 
 
 # notification
