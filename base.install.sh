@@ -173,12 +173,14 @@ arch-chroot /mnt systemctl enable NetworkManager.service
 # -- Initramfs
 
 perl -pi -e 's/^(HOOKS)/#$1/' /mnt/etc/mkinitcpio.conf
-echo HOOKS=\"base udev autodetect modconf usbinput block$HOOKS filesystems fsck\" >> /mnt/etc/mkinitcpio.conf
+echo HOOKS=\"base udev autodetect modconf keyboard block$HOOKS filesystems fsck\" >> /mnt/etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -p linux
 
 # -- User setup
 
-arch-chroot /mnt adduser
+read -p "Enter username: " -r
+arch-chroot /mnt useradd -m -g users -G wheel -s /bin/bash $REPLY
+arch-chroot /mnt passwd $REPLY
 arch-chroot /mnt passwd -l root
 echo "%wheel ALL=(ALL) ALL" > /mnt/etc/sudoers.d/wheel
 

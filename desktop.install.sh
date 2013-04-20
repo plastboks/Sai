@@ -215,11 +215,11 @@ read -p "Install nfs client and server [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
-    nts-utils
+    nfs-utils
 
   # activate NFS serivce
   printf "\n"
-  read -p "Enable and start NFS server service" -n 1 -r
+  read -p "Enable and start NFS server service [y/N]" -n 1 -r
   if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo systemctl enable rpc-idmapd.service
@@ -257,7 +257,7 @@ printf "\n"
 read -p "Install various networktime tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
-  sudo pacman -S \ 
+  sudo pacman -S \
     ntp
 
   # enable ntpd
@@ -299,7 +299,7 @@ printf "\n"
 read -p "Install hardwaresensors utils [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
-  sudo pacman -S \ 
+  sudo pacman -S \
     lm_sensors
 fi
 
@@ -355,7 +355,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   read -p "Enable and start Bitlbee daemon [y/N]" -n 1 -r
   if [[ $REPLY =~ [Yy]$ ]]; then
-    print "\n"
+    printf "\n"
     sudo systemctl enable bitlbee.service
     sudo systemctl start bitlbee.service
   fi
