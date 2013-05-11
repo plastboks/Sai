@@ -290,7 +290,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
   if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo systemctl enable bluetooth.service
-    sudo systemctl start bluetooht.service
+    sudo systemctl start bluetooth.service
   fi
 fi
 
