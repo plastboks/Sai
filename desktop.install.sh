@@ -381,7 +381,7 @@ read -p "Install java browser plugin [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
   printf "\n"
   sudo pacman -S \
-    icedtea-web
+    icedtea-web-java7
 fi
 
 
