@@ -10,19 +10,16 @@ SCRIPTPATH=`dirname $SCRIPT`
 
 
 # copy dnsmasq config to /etc
-read -p "Copy dnsmasq.conf to /etc [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-  sudo cp -f $SCRIPTPATH/etc/dnsmasq.conf /etc
-fi
-
-
-# copy dnsmasq config to /etc
 printf "\n"
-read -p "Copy resolv.conf and NetworkManager deploy script [y/N]" -n 1 -r
+read -p "Deploy configs [y/N] " -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-  sudo cp -f $SCRIPTPATH/etc/resolv.conf /etc
-  sudo cp -f $SCRIPTPATH/etc/resolv.conf.opendns /etc
-  sudo cp -f $SCRIPTPATH/etc/NetworkManager/dispatcher.d/my.resolv.conf /etc/NetworkManager/dispatcher.d/
+  sudo cp -f $SCRIPTPATH/conf/etc/resolv.conf /etc/
+  sudo cp -f $SCRIPTPATH/conf/etc/resolv.conf.opendns /etc/
+  sudo cp -f $SCRIPTPATH/conf/etc/resolv.conf.head /etc/
+  sudo cp -f $SCRIPTPATH/conf/etc/NetworkManager/dispatcher.d/my.resolv.conf /etc/NetworkManager/dispatcher.d/
+
+  sudo cp -f $SCRIPTPATH/conf/etc/openvpn/mullvad_linux.conf /etc/openvpn/
+  sudo cp -f $SCRIPTPATH/conf/usr/share/openvpn/* /usr/share/openvpn/
 fi
 
 printf "\n"
