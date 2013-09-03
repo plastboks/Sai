@@ -119,7 +119,7 @@ fi
 printf "\n"
 read -p "Install python2 and then some (virtualenv) [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-    print "\n"
+    printf "\n"
     sudo pacman -S \
         python2 \
         python2-virtualenv
