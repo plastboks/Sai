@@ -548,6 +548,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     sudo pacman -S \
         unrar \
         zip \
+        unzip \
         p7zip \
         arj \
         unace
