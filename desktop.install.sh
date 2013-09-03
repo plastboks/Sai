@@ -502,7 +502,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         cups \
-        cups-filters \ 
+        cups-filters \
         ghostscript \
         gsfonts
 
