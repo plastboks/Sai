@@ -438,7 +438,7 @@ fi
 
 # file browsers and other tools
 printf "\n"
-read -p "Install graphical file browsers and other various graphics tools [y/N]" -n 1 -r
+read -p "Install graphical file browsers [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
@@ -451,7 +451,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         gvfs-smb \
         gvfs-afp \
         gvfs-obexftp \
-        gtk3 \
+        gtk3
+fi
+
+# image tools
+printf "\n"
+read -p "Install image tools and viewer [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]];then
+    printf "\n"
+    sudo pacman -S \
         librsvg \
         libpng \
         imagemagick \
@@ -459,7 +467,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         evince \
         sxiv
 fi
-
 
 # gigolo from AUR
 printf "\n"
