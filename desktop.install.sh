@@ -168,13 +168,16 @@ fi
 
 # fonts
 printf "\n"
-read -p "Install fonts [y/N]" -n 1 -r
+read -p "Install fonts and icons themes [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         ttf-linux-libertine \
         ttf-freefont \
-        ttf-liberation 
+        ttf-liberation \
+        ttf-dejavu \
+        tangerine-icon-theme \
+        faenza-icon-theme
 fi
 
 
@@ -436,6 +439,21 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
+# image tools
+printf "\n"
+read -p "Install image libraries and viewers [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    printf "\n"
+    sudo pacman -S \
+        librsvg \
+        libpng \
+        imagemagick \
+        ghostscript \
+        evince \
+        sxiv
+fi
+
+
 # file browsers and other tools
 printf "\n"
 read -p "Install graphical file browsers and other various graphics tools [y/N]" -n 1 -r
@@ -443,21 +461,13 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         pcmanfm \
-        gksu \
         gamin \
-        tangerine-icon-theme \
         gnome-menus \
         gvfs \
         gvfs-smb \
         gvfs-afp \
         gvfs-obexftp \
-        gtk3 \
-        librsvg \
-        libpng \
-        imagemagick \
-        ghostscript \
-        evince \
-        sxiv
+        gtk3
 fi
 
 
