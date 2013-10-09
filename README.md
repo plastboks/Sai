@@ -1,4 +1,0 @@
-sai
-===
-
-Simple Arch Installer

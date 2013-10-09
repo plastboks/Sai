@@ -119,7 +119,7 @@ fi
 printf "\n"
 read -p "Install python2 and then some (virtualenv) [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-    print "\n"
+    printf "\n"
     sudo pacman -S \
         python2 \
         python2-virtualenv
@@ -456,7 +456,7 @@ fi
 
 # file browsers and other tools
 printf "\n"
-read -p "Install graphical file browsers and other various graphics tools [y/N]" -n 1 -r
+read -p "Install graphical file browsers [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
@@ -512,7 +512,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         cups \
-        cups-filters \ 
+        cups-filters \
         ghostscript \
         gsfonts
 
@@ -558,6 +558,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     sudo pacman -S \
         unrar \
         zip \
+        unzip \
         p7zip \
         arj \
         unace
