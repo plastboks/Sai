@@ -186,11 +186,10 @@ echo "%wheel ALL=(ALL) ALL" > /mnt/etc/sudoers.d/wheel
 
 # -- Syslinux
 
-arch-chroot /mnt syslinux-install_update -i -a -m -c $DEVICE
-arch-chroot /mnt mkdir /boot/syslinux
-arch-chroot /mnt cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
-arch-chroot /mnt sgdisk $DEVICE --attributes=1:set:2
-arch-chroot /mnt dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$DEVICE
+cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
+sgdisk $DEVICE --attributes=1:set:2
+dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$DEVICE
+arch-chroot /mnt syslinux-install_update -i -a -m
 
 if [ "x$USE_LUKS" != "x" ]; then
     # do pretty things
