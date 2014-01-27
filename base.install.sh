@@ -149,7 +149,7 @@ fi
 
 # -- Initialize base system
 
-pacstrap /mnt base base-devel btrfs-progs grub-bios networkmanager sudo
+pacstrap /mnt base base-devel btrfs-progs syslinux networkmanager sudo
 
 # -- /etc
 
@@ -184,16 +184,14 @@ arch-chroot /mnt passwd $REPLY
 arch-chroot /mnt passwd -l root
 echo "%wheel ALL=(ALL) ALL" > /mnt/etc/sudoers.d/wheel
 
-# -- GRUB
+# -- Syslinux
 
-arch-chroot /mnt grub-install --target=i386-pc --recheck $DEVICE
-cp /mnt/usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /mnt/boot/grub/locale/en.mo
+arch-chroot /mnt syslinux-install_update -i -a -m -c $DEVICE
+arch-chroot /mnt mkdir /boot/syslinux
+arch-chroot /mnt cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
+arch-chroot /mnt sgdisk $DEVICE --attributes=1:set:2
+arch-chroot /mnt dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$DEVICE
 
 if [ "x$USE_LUKS" != "x" ]; then
-  perl -pi -e 's/^(GRUB_CMDLINE_LINUX|GRUB_DISABLE_LINUX_UUID)/#$1/' /mnt/etc/default/grub
-  echo GRUB_CMDLINE_LINUX=\"cryptdevice=$LUKS_PART:crypt:allow-discards\" >> /mnt/etc/default/grub
-  echo GRUB_DISABLE_LINUX_UUID=true >> /mnt/etc/default/grub
+    # do pretty things
 fi
-
-arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
-
