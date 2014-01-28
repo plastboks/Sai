@@ -187,10 +187,12 @@ echo "%wheel ALL=(ALL) ALL" > /mnt/etc/sudoers.d/wheel
 # -- Syslinux
 
 cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
-sed -i 's,\/dev\/sda3,'"$ROOT_PATH"',g' /mnt/boot/syslinux/syslinux.cfg
+sed -i 's,\/dev\/sda3,'"$ROOT_PART"',g' /mnt/boot/syslinux/syslinux.cfg
 sgdisk $DEVICE --attributes=1:set:2 # GPT
 arch-chroot /mnt syslinux-install_update -a -i -m
 
 #if [ "x$USE_LUKS" != "x" ]; then
+    # insert cryptdevice into /mnt/boot/syslinux/syslinux.cfg
+    # APPEND root=$ROOT_PART cryptdevice=$LVM_PART rw
     # do pretty things
 #fi
