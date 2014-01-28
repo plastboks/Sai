@@ -187,12 +187,10 @@ echo "%wheel ALL=(ALL) ALL" > /mnt/etc/sudoers.d/wheel
 # -- Syslinux
 
 cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
+sed -i 's,\/dev\/sda3,'"$ROOT_PATH"',g' /mnt/boot/syslinux/syslinux.cfg
+sgdisk $DEVICE --attributes=1:set:2 # GPT
 arch-chroot /mnt syslinux-install_update -a -i -m
-arch-chroot /mnt dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$DEVICE
-
 
 #if [ "x$USE_LUKS" != "x" ]; then
     # do pretty things
 #fi
-
-sgdisk $DEVICE --attributes=1:set:2 # GPT
