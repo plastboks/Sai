@@ -149,7 +149,7 @@ fi
 
 # -- Initialize base system
 
-pacstrap /mnt base base-devel btrfs-progs syslinux networkmanager sudo
+pacstrap /mnt base base-devel btrfs-progs syslinux networkmanager sudo gptfdisk
 
 # -- /etc
 
@@ -187,10 +187,12 @@ echo "%wheel ALL=(ALL) ALL" > /mnt/etc/sudoers.d/wheel
 # -- Syslinux
 
 cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
-sgdisk $DEVICE --attributes=1:set:2
-dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$DEVICE
-arch-chroot /mnt syslinux-install_update -i -a -m
+arch-chroot /mnt syslinux-install_update -a -i -m
+arch-chroot /mnt dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$DEVICE
 
-if [ "x$USE_LUKS" != "x" ]; then
+
+#if [ "x$USE_LUKS" != "x" ]; then
     # do pretty things
-fi
+#fi
+
+sgdisk $DEVICE --attributes=1:set:2 # GPT
