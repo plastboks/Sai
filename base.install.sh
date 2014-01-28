@@ -190,7 +190,7 @@ cp -r /mnt/usr/lib/syslinux/bios/*.c32 /mnt/boot/syslinux
 
 sed -i 's,\/dev\/sda3,'"$ROOT_PART"',g' /mnt/boot/syslinux/syslinux.cfg
 if [ "x$USE_LUKS" != "x" ]; then
-    sed -i 's,^[    ].*APPEND*.,    APPEND root='"$ROOT_PART"' cryptdevice='"$LVM_PART"' rw,g' /mnt/boot/syslinux/syslinux.cfg
+    sed -i 's,^[    ].*APPEND.*,    APPEND root='"$ROOT_PART"' cryptdevice='"$LUKS_PART"':crypt rw,g' /mnt/boot/syslinux/syslinux.cfg
 fi
 
 sgdisk $DEVICE --attributes=1:set:2 # GPT
