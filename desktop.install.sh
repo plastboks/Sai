@@ -54,8 +54,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         networkmanager-openconnect \
-        networkmanager-openvpn \
-        networkmanager-pptp
+        networkmanager-openvpn
 fi
 
 
@@ -161,7 +160,8 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         i3 \
-        dmenu
+        dmenu \
+        xterm \
         rxvt-unicode
 fi
 
@@ -188,6 +188,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     printf "\n"
     sudo pacman -S \
         alsa-utils \
+        cmus \
         moc
 fi
 
