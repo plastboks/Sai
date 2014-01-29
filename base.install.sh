@@ -79,22 +79,30 @@ if [ "x$USE_SSD" != "x" ]; then
 fi
 
 # -- Unmount any previous attempt
-
-umount /mnt/var/cache/pacman/pkg
-umount /mnt/boot
-umount /mnt/home
-umount /mnt
-vgremove -f arch
-cryptsetup luksClose $LVM_PART
+#umount /mnt/var/cache/pacman/pkg
+#umount /mnt/boot
+#umount /mnt/home
+#umount /mnt
+#vgremove -f arch
+#cryptsetup luksClose $LVM_PART
 
 # -- Partitioning
 
-sgdisk \
-  -o \
-  -n 1:0:+32M -t 1:ef02 -c 1:bios \
-  -n 2:0:+512M -c 2:boot \
-  -N=3 -c 3:lvm \
-  -p $DEVICE
+if [ "x$USE_LUKS" != "x" ]; then
+    sgdisk \
+      -o \
+      -n 1:0:+32M -t 1:ef02 -c 1:bios \
+      -n 2:0:+512M -c 2:boot \
+      -N=3 -c 3:crypt \
+      -p $DEVICE
+else
+    sgdisk \
+      -o \
+      -n 1:0:+32M -t 1:ef02 -c 1:bios \
+      -n 2:0:+512M -c 2:boot \
+      -N=3 -c 3:lvm \
+      -p $DEVICE
+fi
 
 sleep 2 # Needed to make partitions visible
 
