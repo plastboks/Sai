@@ -22,7 +22,7 @@ FS_OPTIONS="rw,relatime,noatime,data=ordered"
 FS_SSD_OPTIONS="discard"
 HOSTNAME="arch"
 BOOT_PART="/dev/disk/by-partlabel/boot"
-LVM_PART="/dev/disk/by-partlabel/crypt"
+LVM_PART="/dev/disk/by-partlabel/archdisk"
 HOOKS=""
 
 while test $# -gt 0; do
@@ -80,12 +80,12 @@ fi
 
 # -- Unmount any previous attempt
 
-umount /mnt/var/cache/pacman/pkg
-umount /mnt/boot
-umount /mnt/home
-umount /mnt
-vgremove -f arch
-cryptsetup luksClose $LVM_PART
+#umount /mnt/var/cache/pacman/pkg
+#umount /mnt/boot
+#umount /mnt/home
+#umount /mnt
+#vgremove -f arch
+#cryptsetup luksClose $LVM_PART
 
 # -- Partitioning
 
@@ -93,7 +93,7 @@ sgdisk \
   -o \
   -n 1:0:+32M -t 1:ef02 -c 1:bios \
   -n 2:0:+512M -c 2:boot \
-  -N=3 -c 3:crypt \
+  -N=3 -c 3:archdisk \
   -p $DEVICE
 
 sleep 2 # Needed to make partitions visible
