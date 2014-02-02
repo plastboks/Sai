@@ -22,6 +22,7 @@ The Syslinux bootloader offers a variety of options. The standards options (as u
   * `vga=773` = 1024x768 8 bit.
   * `vga=775` = 1280x1024 8 bit.
   * `vga=893` = 1920x1200 8 bit.
+
 More info on this in the link section in the end of this document.
 
 
@@ -32,4 +33,4 @@ For a disk list in the install environment type: `lsblk`.
 
 Links
 =====
-  * (VESA BIOS Extensions)[http://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers]
+  * [VESA BIOS Extensions](http://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers)
