@@ -90,7 +90,8 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         xautolock \
         xorg-utils \
         xorg-apps \
-        rxvt-unicode
+        rxvt-unicode \
+        xdg-user-dirs
 fi
 
 
