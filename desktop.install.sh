@@ -15,17 +15,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
-# setup aur
-printf "\n"
-read -p "Setup AUR and Yaurt [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-  sudo echo '[archlinuxfr]' >> /etc/pacman.conf
-  sudo echo 'Server = http://repo.archlinux.fr/$arch'
-  sudo pacman -Sy \
-    yaourt
-fi
-
-
 # wifi 
 printf "\n"
 read -p "Install wireless tools and wicd [y/N]" -n 1 -r
