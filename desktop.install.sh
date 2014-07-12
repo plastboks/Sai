@@ -20,7 +20,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         xorg-utils \
         xorg-apps \
         rxvt-unicode \
-        xdg-user-dirs "
+        xdg-user-dirs"
 fi
 
 printf "\n" # intel graphics driver
@@ -61,6 +61,12 @@ printf "\n" # arandr monitor utility
 read -p "Install arandr graphics utility [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC arandr"
+fi
+
+printf "\n" # video
+read -p "Install movieutils and player [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC mplayer"
 fi
 
 printf "\n" # sound
@@ -106,23 +112,10 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC python2 python2-virtualenv"
 fi
 
-printf "\n" # video
-read -p "Install movieutils and player [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC mplayer"
-fi
-
- 
 printf "\n" # editors
 read -p "Install editors [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC vim ctags"
-fi
-
-printf "\n" # network tools
-read -p "Install various network tools [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC wget nfs-utils"
 fi
 
 printf "\n" # bluetooth utilities
@@ -189,12 +182,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 
 fi
 
-printf "\n" # disk utilities
-read -p "Install gptfdisk (cgdisk) [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC gptfdisk"
-fi
-
 printf "\n" # image tools
 read -p "Install image libraries and viewers [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -248,29 +235,12 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         gsfonts"
 fi
 
-printf "\n" # hp printer driver
-read -p "Install HP printer drivers [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC hplip"
-fi
-
 printf "\n" # notification
 read -p "Install notification tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC dunst inotify-tools"
 fi
 
-printf "\n" # archive tools
-read -p "Install archive tools [y/N]" -n 1 -r 
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC \
-        unrar \
-        zip \
-        unzip \
-        p7zip \
-        arj \
-        unace"
-fi
 
 printf "\n" # avr programming
 read -p "Install avr-gcc avrdude etc [y/N]" -n 1 -r
@@ -284,7 +254,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         avrdude"
 fi
 
-printf "\n" # other
+printf "\n" # varius
 read -p "Install other various cli tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
@@ -294,20 +264,23 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         htop \
         tmux \
         links \
+        wget \
+        nfs-utils \
         socat \
         findutils \
-        enscript"
+        enscript \
+        unrar \
+        zip \
+        unzip \
+        p7zip \
+        gptfdisk \
+        arj \
+        unace"
+
 fi
 
 
-printf "\n" # update
-read -p "Update repos before installing [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    printf "\n"
-    sudo pacman -Syu
-fi
-
-sudo pacman -S $PAC
+sudo pacman -Syu $PAC
 printf "\n"
 exit
 
