@@ -8,6 +8,10 @@
 
 PAC=""
 
+
+#############
+# X related #
+#############
 printf "\n" # xserver and some other
 read -p "Install xorg [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -63,12 +67,10 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC arandr"
 fi
 
-printf "\n" # video
-read -p "Install movieutils and player [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC mplayer"
-fi
 
+###############
+# MEDIA TOOLS #
+###############
 printf "\n" # sound
 read -p "Install pulseaudio [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -76,10 +78,31 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         alsa-utils \
         pulseaudio \
         pulseaudio-alsa \
-        pavucontrol \
-        cmus"
+        pavucontrol"
 fi
 
+printf "\n" # video
+read -p "Install movie and audio player [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC mplayer cmus"
+fi
+
+printf "\n" # image tools
+read -p "Install image libraries and viewers [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC \
+        librsvg \
+        libpng \
+        imagemagick \
+        ghostscript \
+        evince \
+        sxiv"
+fi
+
+
+############################
+# NETWORKING  AND WIRELESS #
+############################
 printf "\n" # wifi
 read -p "Install wireless tools and wicd [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -106,30 +129,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC dnsmasq"
 fi
 
-printf "\n" # python and virtualenv
-read -p "Install python2 and virtualenv [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC python2 python2-virtualenv"
-fi
-
-printf "\n" # editors
-read -p "Install editors [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC vim ctags"
-fi
-
-printf "\n" # bluetooth utilities
-read -p "Install bluetooth tools [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC bluez blueman"
-fi
-
-printf "\n" # sensors
-read -p "Install hardwaresensors utils [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC lm_sensors"
-fi
-
 printf "\n" # ssh and rsync
 read -p "Install ssh, encryption and sync utils [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -145,6 +144,49 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         zlib"
 fi
 
+printf "\n" # bluetooth utilities
+read -p "Install bluetooth tools [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC bluez blueman"
+fi
+
+
+######################
+# Editors and coding #
+######################
+printf "\n" # python and virtualenv
+read -p "Install python2 and virtualenv [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC python2 python2-virtualenv"
+fi
+
+printf "\n" # editors
+read -p "Install editors [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC vim ctags"
+fi
+printf "\n" # sensors
+read -p "Install hardwaresensors utils [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC lm_sensors"
+fi
+
+printf "\n" # avr programming
+read -p "Install avr-gcc avrdude etc [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC \
+        avr-gcc \
+        avr-binutils \
+        avr-gdb \
+        avr-libc \
+        simavr \
+        avrdude"
+fi
+
+
+########################
+# WEB, MAIL and SOCIAL #
+########################
 printf "\n" # mail, chat, rss
 read -p "Install mail, and rss utils [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -175,56 +217,20 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC flashplugin"
 fi
  
-printf "\n" # smartcard
-read -p "Install smartcard utils [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC pcsc-tools ccid"
 
-fi
-
-printf "\n" # image tools
-read -p "Install image libraries and viewers [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC \
-        librsvg \
-        libpng \
-        imagemagick \
-        ghostscript \
-        evince \
-        sxiv"
-fi
-
-printf "\n" # file browsers and other tools
-read -p "Install graphical file browsers [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC \
-        pcmanfm \
-        gamin \
-        gnome-menus \
-        gvfs \
-        gvfs-smb \
-        gvfs-afp \
-        gvfs-obexftp \
-        gtk3"
-fi
-
-printf "\n" # thunar file browser
-read -p "Install thunar filebrowser and extra tools [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC \
-        thunar \
-        thunar-volume \
-        thunar-archive-plugin \
-        thunar-media-tags-plugin \
-        file-roller"
-fi
-
+##########
+# OFFICE #
+##########
 printf "\n" # libreoffice
 read -p "Install libreoffice [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC libreoffice"
 fi
 
+
+############
+# PRINTING #
+############
 printf "\n" #printing
 read -p "Install CUPS printing software [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
@@ -242,19 +248,10 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 fi
 
 
-printf "\n" # avr programming
-read -p "Install avr-gcc avrdude etc [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC \
-        avr-gcc \
-        avr-binutils \
-        avr-gdb \
-        avr-libc \
-        simavr \
-        avrdude"
-fi
-
-printf "\n" # varius
+###########
+# VARIOUS #
+###########
+printf "\n" # various
 read -p "Install other various cli tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
@@ -279,7 +276,17 @@ if [[ $REPLY =~ [Yy]$ ]]; then
 
 fi
 
+printf "\n" # smartcard
+read -p "Install smartcard utils [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC pcsc-tools ccid"
 
+fi
+
+
+###########
+# Install #
+###########
 sudo pacman -Syu $PAC
 printf "\n"
 exit
