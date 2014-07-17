@@ -47,6 +47,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         dmenu \
         xterm \
         gnome-themes-standard \
+        feh \
         rxvt-unicode"
 fi
 
