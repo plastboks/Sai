@@ -49,6 +49,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         gnome-themes-standard \
         feh \
         archlinux-wallpaper \
+        xcompmgr \
         rxvt-unicode"
 fi
 
