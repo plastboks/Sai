@@ -50,6 +50,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         feh \
         archlinux-wallpaper \
         xcompmgr \
+        urxvt-perls \
         rxvt-unicode"
 fi
 
