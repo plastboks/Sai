@@ -261,6 +261,7 @@ read -p "Install other various cli tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
         cclive \
+        livestreamer \
         quvi \
         git \
         htop \
