@@ -149,7 +149,7 @@ fi
 
 # -- Initialize base system
 
-pacstrap /mnt base base-devel btrfs-progs syslinux networkmanager sudo gptfdisk
+pacstrap /mnt base base-devel btrfs-progs syslinux connman sudo gptfdisk
 
 # -- /etc
 
@@ -168,7 +168,7 @@ hwclock --systohc --utc
 
 echo $HOSTNAME > /mnt/etc/hostname
 
-arch-chroot /mnt systemctl enable NetworkManager.service
+arch-chroot /mnt systemctl enable connman.service
 
 # -- Initramfs
 
