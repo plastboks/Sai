@@ -64,6 +64,9 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         ttf-liberation \
         ttf-dejavu \
         tangerine-icon-theme \
+        adobe-source-code-pro-fonts \
+        adobe-source-sans-pro-fonts \
+        adobe-source-serif-pro-fonts \
         faenza-icon-theme"
 fi
 
