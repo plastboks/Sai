@@ -67,6 +67,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         adobe-source-code-pro-fonts \
         adobe-source-sans-pro-fonts \
         adobe-source-serif-pro-fonts \
+        adobe-source-han-sans-jp-fonts \
         faenza-icon-theme"
 fi
 
@@ -90,10 +91,14 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         pavucontrol"
 fi
 
-printf "\n" # video
+printf "\n" # video and music
 read -p "Install movie and audio player [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC mplayer cmus"
+    PAC="$PAC \
+        mplayer \
+        ncmpcpp \
+        mpd \
+        cmus"
 fi
 
 printf "\n" # image tools
