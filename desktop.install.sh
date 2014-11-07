@@ -23,7 +23,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         xautolock \
         xorg-utils \
         xorg-apps \
-        rxvt-unicode \
         xdg-user-dirs"
 fi
 
@@ -45,6 +44,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
         i3 \
         dmenu \
+        rxvt-unicode \
         xterm \
         gnome-themes-standard \
         gtk-engines \
@@ -52,8 +52,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         archlinux-wallpaper \
         xcompmgr \
         autocutsel \
-        urxvt-perls \
-        rxvt-unicode"
+        urxvt-perls"
 fi
 
 printf "\n" # fonts
