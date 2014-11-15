@@ -101,6 +101,14 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         cmus"
 fi
 
+printf "\n" # video playback library
+read -p "Install movie playback libraries (intel) [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC \
+        libva-intel-driver \
+        libvdpau-va-gl"
+fi
+
 printf "\n" # image tools
 read -p "Install image libraries and viewers [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
