@@ -227,19 +227,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC dwb luakit firefox"
 fi
 
-printf "\n" # java browser plugin
-read -p "Install java browser plugin [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC icedtea-web-java7"
-fi
-
-printf "\n" # flash browser plugin
-read -p "Install flash browser plugin [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC flashplugin"
-fi
- 
-
 ##########
 # OFFICE #
 ##########
