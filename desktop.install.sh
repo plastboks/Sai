@@ -23,7 +23,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         xautolock \
         xorg-utils \
         xorg-apps \
-        rxvt-unicode \
         xdg-user-dirs"
 fi
 
@@ -45,14 +44,15 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
         i3 \
         dmenu \
+        rxvt-unicode \
         xterm \
         gnome-themes-standard \
         gtk-engines \
         feh \
         archlinux-wallpaper \
         xcompmgr \
-        urxvt-perls \
-        rxvt-unicode"
+        autocutsel \
+        urxvt-perls"
 fi
 
 printf "\n" # fonts
@@ -99,6 +99,14 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         ncmpcpp \
         mpd \
         cmus"
+fi
+
+printf "\n" # video playback library
+read -p "Install movie playback libraries (intel) [y/N]" -n 1 -r
+if [[ $REPLY =~ [Yy]$ ]]; then
+    PAC="$PAC \
+        libva-intel-driver \
+        libvdpau-va-gl"
 fi
 
 printf "\n" # image tools
@@ -218,19 +226,6 @@ read -p "Install webbrowsers [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC dwb luakit firefox"
 fi
-
-printf "\n" # java browser plugin
-read -p "Install java browser plugin [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC icedtea-web-java7"
-fi
-
-printf "\n" # flash browser plugin
-read -p "Install flash browser plugin [y/N]" -n 1 -r
-if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC flashplugin"
-fi
- 
 
 ##########
 # OFFICE #
