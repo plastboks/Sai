@@ -29,7 +29,7 @@ fi
 printf "\n" # intel graphics driver
 read -p "Install intel graphics driver [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC xf86-video-intel"
+    PAC="$PAC xf86-video-intel mesa-vdpau"
 fi
 
 printf "\n" # nvidia open source graphics driver
