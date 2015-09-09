@@ -51,6 +51,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         feh \
         archlinux-wallpaper \
         xcompmgr \
+        bash-completion \
         autocutsel \
         urxvt-perls"
 fi
