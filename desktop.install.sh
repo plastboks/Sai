@@ -88,6 +88,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         alsa-utils \
         pulseaudio \
         pulseaudio-alsa \
+        ponymix \
         pavucontrol"
 fi
 
