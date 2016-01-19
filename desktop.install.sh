@@ -44,6 +44,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
         i3 \
         dmenu \
+        rofi \
         rxvt-unicode \
         xterm \
         gnome-themes-standard \
@@ -51,6 +52,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         feh \
         archlinux-wallpaper \
         xcompmgr \
+        bash-completion \
         autocutsel \
         urxvt-perls"
 fi
