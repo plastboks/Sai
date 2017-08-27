@@ -250,6 +250,7 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         cups \
         cups-filters \
         ghostscript \
+        gtk3-print-backends \
         gsfonts"
 fi
 
