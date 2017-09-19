@@ -21,7 +21,6 @@ if [[ $REPLY =~ [Yy]$ ]]; then
         xorg-xrdb \
         xorg-xrandr \
         xautolock \
-        xorg-utils \
         xorg-apps \
         xdg-user-dirs"
 fi
@@ -227,7 +226,7 @@ fi
 printf "\n" # web
 read -p "Install webbrowsers [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
-    PAC="$PAC dwb luakit firefox"
+    PAC="$PAC firefox"
 fi
 
 ##########
@@ -268,7 +267,6 @@ read -p "Install other various cli tools [y/N]" -n 1 -r
 if [[ $REPLY =~ [Yy]$ ]]; then
     PAC="$PAC \
         cclive \
-        livestreamer \
         quvi \
         git \
         htop \
