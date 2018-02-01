@@ -149,7 +149,7 @@ fi
 
 # -- Initialize base system
 
-pacstrap /mnt base base-devel btrfs-progs syslinux networkmanager sudo gptfdisk
+pacstrap /mnt base base-devel btrfs-progs syslinux networkmanager sudo gptfdisk ntp
 
 # -- /etc
 
@@ -163,10 +163,21 @@ echo en_US.UTF-8 UTF-8 > /mnt/etc/locale.gen
 arch-chroot /mnt locale-gen
 echo LANG=en_US.UTF-8 > /mnt/etc/locale.conf
 
+# -- Time setup
+
+read -p "Enter timezone (ex Europe/Oslo): " -r
+arch-chroot /mnt timedatectl set-timezone $REPLY
+arch-chroot /mnt systemctl enable ntpd
+arch-chroot /mnt systemctl start ntpd
+arch-chroot /mnt timedatectl set-ntp 1
 ln -s /usr/share/zoneinfo/Europe/Oslo /mnt/etc/localtime
 hwclock --systohc --utc
 
+# -- Hostname
+
 echo $HOSTNAME > /mnt/etc/hostname
+
+# -- Network
 
 arch-chroot /mnt systemctl enable NetworkManager.service
 
